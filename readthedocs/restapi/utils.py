@@ -105,7 +105,7 @@ def index_search_request(version, page_list, commit):
         'author': [user.username for user in project.users.all()],
         'url': project.get_absolute_url(),
         'tags': None,
-        '_boost': project_scale,
+        'weight': project_scale,
     })
 
     index_list = []
@@ -123,7 +123,7 @@ def index_search_request(version, page_list, commit):
             'content': page['content'],
             'taxonomy': None,
             'commit': commit,
-            '_boost': page_scale + project_scale,
+            'weight': page_scale + project_scale,
         })
 
     page_obj.bulk_index(index_list, parent=project.slug)
