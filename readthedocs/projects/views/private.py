@@ -21,8 +21,8 @@ from guardian.shortcuts import assign
 from builds.forms import AliasForm, VersionForm
 from builds.filters import VersionFilter
 from builds.models import VersionAlias, Version
-from oauth.models import GithubProject
-from oauth import utils as oauth_utils
+from readthedocs.oauth.models import GithubProject
+from readthedocs.oauth import utils as oauth_utils
 from projects.forms import (ImportProjectForm, build_versions_form,
                             build_upload_html_form, SubprojectForm,
                             UserForm, EmailHookForm, TranslationForm,
