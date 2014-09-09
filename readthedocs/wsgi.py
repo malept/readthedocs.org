@@ -11,3 +11,8 @@ application = get_wsgi_application()
 # Apply WSGI middleware here.
 # from helloworld.wsgi import HelloWorldApplication
 # application = HelloWorldApplication(application)
+try:
+    from dj_static import Cling, MediaCling
+    application = Cling(MediaCling(application))
+except ImportError:
+    pass
