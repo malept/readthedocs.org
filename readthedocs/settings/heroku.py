@@ -68,6 +68,16 @@ CELERY_RESULT_BACKEND='djcelery.backends.cache:CacheBackend'
 
 INSTALLED_APPS.append('kombu.transport.django')
 
+BUGSNAG = {
+    'project_root': os.path.realpath(os.path.join(os.path.dirname(__file__),
+                                                  '../..')),
+    'use_ssl': True,
+}
+
+MIDDLEWARE_CLASSES += (
+    'bugsnag.django.middleware.BugsnagMiddleware',
+)
+
 USE_SUBDOMAIN = False
 NGINX_X_ACCEL_REDIRECT = False
 

@@ -747,6 +747,12 @@ def update_static_metadata(project_pk):
             version='',
             msg='Cannot write to metadata.json: {0}'.format(e)
         ))
+        try:
+            import bugsnag
+        except ImportError:
+            pass
+        else:
+            bugsnag.notify(e)
 
 
 ##############
