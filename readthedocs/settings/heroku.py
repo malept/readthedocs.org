@@ -68,6 +68,17 @@ CELERY_RESULT_BACKEND='djcelery.backends.cache:CacheBackend'
 
 INSTALLED_APPS.append('kombu.transport.django')
 
+es_url_unparsed = os.environ.get('BONSAI_URL')
+if es_url_unparsed:
+    es_url = urlparse(es_url_parsed)
+    ES_HOSTS = [{
+        'host': es_url.hostname,
+        'port': es_url.port,
+        'use_ssl': es_url.scheme == 'https',
+        'http_auth': (es_url.username, es_url.password),
+    }]
+ES_DEFAULT_NUM_SHARDS = 1
+
 BUGSNAG = {
     'project_root': os.path.realpath(os.path.join(os.path.dirname(__file__),
                                                   '../..')),
